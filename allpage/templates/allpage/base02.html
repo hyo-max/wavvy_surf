@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>surfnerd</title>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mo-style.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/form_logo.png' %}" type="image/png" />
+
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9CCLG61DJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B9CCLG61DJ');
+</script>
+    {% block css %}
+    <style>
+        @media (max-width: 414px){
+             .gnbWp .gnb-link .btn:last-child{
+                margin-bottom: 10px!important;
+            }
+        }
+    </style>
+{% endblock %}
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="headerAr wTy1">
+                <h1 class="h-btn logo ic"><a href='{% url "index"%}'><button class="logoBtn"> 로고</button></a></h1>
+                <button class="h-btn side-menuBtn ic">메뉴 버튼</button>
+                <div class="gnbWpper">
+                    <div class="gnbWp">
+                        <div class="gnb-h">
+                            <button class="close ic">닫기</button>
+                            <h2 class="logo ic"> 로고</h2>
+                        </div>
+                        <div class="gnb-menu">
+                            <div class="menuList">
+                                <button class="menuBtn spot"><a href='{% url "spot_list"%}'>서핑스팟</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn community"><a href='{% url "commu_list"%}'>커뮤니티</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn goods"><a href='https://sandswave.com/product-category/surfboards/'>서핑용품</a></button>
+                            </div>
+
+                        </div>
+ 
+                        {% if request.user.is_authenticated %}
+                        <div class="gnb-link">
+                            <a href="{% url 'profile' %}"><button class="btn line">마이페이지</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_logout' %}"><button class="btn">로그아웃</button></a>
+                        </div>
+                        {% else %}
+                        <div class="gnb-link">
+                            <a href="{% url 'account_login' %}"><button class="btn line" >로그인</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_signup' %}"><button class="btn">회원가입</button></a>
+                        </div>
+                        {% endif %}
+       {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+                    </div>
+                </div>
+                <div class="dim side-menu"></div>
+            </div>
+        </div>
+{% block content %}
+{% endblock %}
+        <div class="footer">
+            <div class="wTy1 p-RL2">
+                <h1 class="logo ic"><button class="logoBtn"> 로고</button></h1>
+                <ul class="footer-link">
+                    <!--<li class="link"><button class="link-btn alliance">제휴문의</button></li>-->
+                    <li class="link"><a href='{% url "terms"%}'><button class="link-btn">이용약관</button></a></li>
+                    <li class="link"><a href='{% url "privacy"%}'><button class="link-btn">개인정보 처리방침</button></a></li>
+                </ul>
+                <div class="company-info">
+                    <div class="row">
+                        <span class="txt">샌드 사업자 등록번호 : 166-16-01159</span>
+                        <!--<span class="txt">통신판매업신고번호 : 2020-어쩌구저쩌구-01088</span>-->
+                        <span class="txt">대표 : 박효진</span>
+                    </div>
+                    <div class="row">
+                        <span class="txt">개인정보 관리 책임자 : 전진</span>
+                        <span class="txt">주소: 강원도 강릉시 연곡면 연주로 132, 1205호</span>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p class="txt">샌드는 통신판매중개자로서 거래당사자가 아니며,  호스트가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</p>
+                    <p class="txt">NICEPAY 안전거래 서비스 : 고객님의 안전거래를 위해 현금 결제 시,  저희 사이트에서 가입한 구매안전 서비스를 이용할 수 있습니다. </p>
+                    <button class="nice-pay">NICEPAY 안전거래 가입확인</button>
+                </div>
+            </div>
+        </div>
+    {% block scripts %}
+  {% endblock %}
+</body>
+</html>

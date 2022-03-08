@@ -1,0 +1,45 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="listPage-titAr wTy1 p-RL1">
+<div class="container subPage">
+    
+    <form method="POST" action="">
+    {% csrf_token %}
+        <legend>delete post!!</legend>
+        <h2>'{{ object.title }}' 을(를) 삭제 하시겠습니까?</h2>
+    <button type="submit" style='padding: 5px 7px 5px 7px;
+    border-radius: 10px;
+    right: 15px;
+    color: #fff;
+    background: #999;'> 삭제</button>
+    <a href="{% url 'commu-detail' object.id %}"  style='padding: 5px 7px 5px 7px;
+    border-radius: 10px;
+    right: 15px;
+    color: #fff;
+    background: #999;'> 취소</a>
+</form>
+
+
+
+
+                <p class="tit">{{ object.title }}</p>
+                
+            </div>
+            <div class="contents">
+                <div class="content wTy1 p-RL1">
+                    <div class="list-content">
+                        
+                        <div class="tabConWp">
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+  {% endblock %}

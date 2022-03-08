@@ -1,0 +1,611 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>surfnerd</title>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mo-style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/form_logo.png' %}" type="image/png" />
+
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="{% static 'js/libs/swiper/swiper.min.css' %}">
+    <script src="{% static 'js/libs/swiper/swiper.min.js' %}"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9CCLG61DJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B9CCLG61DJ');
+</script>
+    <style>
+        body > div > div.container > div:nth-child(2) > div > div.card-list.spot > div,
+    body > div > div.container > div:nth-child(3) > div > div.card-list.school > div,
+    body > div > div.container > div:nth-child(5) > div:nth-child(2) > div > div.card-list.channel > div{
+        -ms-overflow-style: none;
+    }
+    ::-webkit-scrollbar{ 
+        display:none;
+    }
+
+     body > div > div.container > div:nth-child(5) > div:nth-child(2) > div > div.card-list.channel > div > div > div.list.swiper-slide{
+            margin-right: 10px;
+    }
+    
+        @media (max-width: 414px){
+             .gnbWp .gnb-link .btn:last-child{
+                margin-bottom: 10px!important;
+            }
+        }
+    
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper mainPage">
+        <div class="header">
+            <div class="headerAr wTy1">
+                <h1 class="h-btn logo ic"><a href='{% url "index"%}'><button class="logoBtn"> 로고</button></a></h1>
+                <button class="h-btn side-menuBtn ic">메뉴 버튼</button>
+                <div class="gnbWpper">
+                    <div class="gnbWp">
+                        <div class="gnb-h">
+                            <button class="close ic">닫기</button>
+                            <h2 class="logo ic"> 로고</h2>
+                        </div>
+                        <div class="gnb-menu">
+                            <div class="menuList">
+                                <button class="menuBtn spot"><a href='{% url "spot_list"%}'>서핑스팟</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn community"><a href='{% url "commu_list"%}'>커뮤니티</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn goods"><a href='https://sandswave.com/product-category/surfboards/' >서핑용품</a></button>
+                            </div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <div class="gnb-link">
+                            <a href="{% url 'profile' %}"><button class="btn line">마이페이지</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_logout' %}"><button class="btn">로그아웃</button></a>
+                        </div>
+                        {% else %}
+                        <div class="gnb-link">
+                            <a href="{% url 'account_login' %}"><button class="btn line" >로그인</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_signup' %}"><button class="btn">회원가입</button></a>
+                        </div>
+                        {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+                    </div>
+                </div>
+                <div class="dim side-menu"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="contents main">
+               <!-- <div class="main-menuAr">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn spot">
+                                    <a href='{% url "spot_list"%}'><div class="ic">서핑스팟 아이콘</div>
+                                    <span class="tx">서핑스팟</span></a>
+                                </button>
+                            </div>
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn school">
+                                    <a href='{% url "school_list"%}'><div class="ic">서핑스쿨 아이콘</div>
+                                    <span class="tx">서핑스쿨</span></a>
+                                </button>
+                            </div>
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn travel">
+                                    <a href='{% url "school_list"%}'><div class="ic">서핑여행 아이콘</div>
+                                    <span class="tx">서핑여행</span></a>
+                                </button>
+                            </div>
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn goods">
+                                    <a href='{% url "commu_list"%}'><div class="ic">서핑용품 아이콘</div>
+                                    <span class="tx">서핑용품</span></a>
+                                </button>
+                            </div>
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn community">
+                                    <a href='{% url "commu_list"%}'><div class="ic">커뮤니티 아이콘</div>
+                                    <span class="tx">커뮤니티</span>
+                                </button>
+                            </div>
+                            <div class="main-menuList swiper-slide">
+                                <button class="menuBtn channel">
+                                    <a href='{% url "channel_list"%}'><div class="ic">채널 웨이비 아이콘</div>
+                                    <span class="tx">채널 웨이비</span></a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="main-visual-Tx">
+                    <div class="visual-Tx"></div>
+                    <div class="visual-Txx"></div>
+                </div>
+                <div class="main-visual-Ar">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="main-visual swiper-slide" style="background-image: url(../static/images/한토로_한국로고_피쉬.gif);
+                            background-position: 50% 80%;"></div>
+                            <div class="main-visual swiper-slide" style="background-image: url(../static/images/서프너드에피소드2.gif);
+                            background-position: 50% 80%;"></div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div> 
+            </div>
+            
+
+            <div class="contents">
+                <!--<div class="content wTy1">
+                    <div class="titAr p-RL2">
+                        <div class="txtAr">
+                            <p class="tit">서핑여행<span class="count">(24)</span></p>
+                            <p class="txt">국내외 서핑여행 상품 제공합니다.</p>
+                        </div>
+                        <button class="viewBtn C-Gy">전체보기</button>
+                    </div>
+                    <div class="card-list travel">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb07.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">[웨이비 X 프립] 양양 당일치기</p>
+                                        <p class="program-info">
+                                            <span class="tx">당일</span>
+                                            <span class="tx">매주 수요일 / 금요일</span>
+                                        </p>
+                                        <p class="average-point">
+                                            <em class="star-ic"></em>
+                                            <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                        </p>
+                                        <div class="price-info">
+                                            <div class="cost-price"><span class="en">70,000</span>원</div>
+                                            <div class="selling-price fR"><span class="en">50,000</span>원</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb08.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">[웨이비 X 프립] 양양 당일치기</p>
+                                        <p class="program-info">
+                                            <span class="tx">당일</span>
+                                            <span class="tx">매주 수요일 / 금요일</span>
+                                        </p>
+                                        <p class="average-point">
+                                            <em class="star-ic"></em>
+                                            <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                        </p>
+                                        <div class="price-info">
+                                            <div class="cost-price"><span class="en">70,000</span>원</div>
+                                            <div class="selling-price fR"><span class="en">50,000</span>원</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb07.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">[웨이비 X 프립] 양양 당일치기</p>
+                                        <p class="program-info">
+                                            <span class="tx">당일</span>
+                                            <span class="tx">매주 수요일 / 금요일</span>
+                                        </p>
+                                        <p class="average-point">
+                                            <em class="star-ic"></em>
+                                            <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                        </p>
+                                        <div class="price-info">
+                                            <div class="cost-price"><span class="en">70,000</span>원</div>
+                                            <div class="selling-price fR"><span class="en">50,000</span>원</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb08.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">[웨이비 X 프립] 양양 당일치기</p>
+                                        <p class="program-info">
+                                            <span class="tx">당일</span>
+                                            <span class="tx">매주 수요일 / 금요일</span>
+                                        </p>
+                                        <p class="average-point">
+                                            <em class="star-ic"></em>
+                                            <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                        </p>
+                                        <div class="price-info">
+                                            <div class="cost-price"><span class="en">70,000</span>원</div>
+                                            <div class="selling-price fR"><span class="en">50,000</span>원</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contents">
+                <div class="content wTy1">
+                    <div class="titAr p-RL2">
+                        <div class="txtAr">
+                            <p class="tit">서핑용품<span class="count">(24)</span></p>
+                            <p class="txt">서핑용품을 판매합니다. </p>
+                        </div>
+                        <button class="viewBtn C-Gy">전체보기</button>
+                    </div>
+                    <div class="card-list goods">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb09.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">FIREWIRE SURFBOARD</p>
+                                        <p class="descrip">파이어와이어 도미네이터<br>DOMINATOR FDS + HELIUM</p>
+                                        <div class="price-info">
+                                            <div class="selling-price"><span class="en">1,140,000</span>원</div>
+                                        </div>
+                                        <p class="descrip">도미네이터 FDS + HELIUM</p>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb10.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">FIREWIRE SURFBOARD</p>
+                                        <p class="descrip">파이어와이어 도미네이터<br>DOMINATOR FDS + HELIUM</p>
+                                        <div class="price-info">
+                                            <div class="selling-price"><span class="en">1,140,000</span>원</div>
+                                        </div>
+                                        <p class="descrip">도미네이터 FDS + HELIUM</p>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb09.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">FIREWIRE SURFBOARD</p>
+                                        <p class="descrip">파이어와이어 도미네이터<br>DOMINATOR FDS + HELIUM</p>
+                                        <div class="price-info">
+                                            <div class="selling-price"><span class="en">1,140,000</span>원</div>
+                                        </div>
+                                        <p class="descrip">도미네이터 FDS + HELIUM</p>
+                                    </div>
+                                </div>
+                                <div class="list swiper-slide">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(../static/images/@temp/sample_thumb10.png);"></div>
+                                    </div>
+                                    <div class="infoAr">
+                                        <p class="tit">FIREWIRE SURFBOARD</p>
+                                        <p class="descrip">파이어와이어 도미네이터<br>DOMINATOR FDS + HELIUM</p>
+                                        <div class="price-info">
+                                            <div class="selling-price"><span class="en">1,140,000</span>원</div>
+                                        </div>
+                                        <p class="descrip">도미네이터 FDS + HELIUM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+           <!-- <div class="bannerAr banner02 wTy1">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner02.png);"></div>
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner02.png);"></div>
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner02.png);"></div>
+                    </div>-->
+                    <!-- Add Pagination -->
+                    <!-- <div class="swiper-pagination"></div>
+                </div>
+            </div>-->
+            <div class="contents">
+                <div class="content wTy1">
+                    <div class="titAr p-RL2">
+                        <div class="txtAr">
+                            <p class="tit">서핑스팟<span class="count">({{ spot_list|length }})</span></p>
+                            <p class="txt">전국의 서핑스팟 정보를 제공합니다.</p>
+                        </div>
+                        <button class="viewBtn C-Bu"><a href='{% url "spot_list"%}'>전체보기</a></button>
+                    </div>
+                    <div class="card-list spot">
+                        <div class="swiper-container" style="overflow-y:hidden ">
+                            <div class="swiper-wrapper">
+                                {% for spot_lists in spot_list %}
+                                <div class="list swiper-slide">
+                                    <a href='{% url "spot_detail" spot_lists.pk %}'><div class="infoAr">
+                                    <div class="thumbAr">
+                                        <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ spot_lists.img }});"></div>
+                                    </div>
+                                        <p class="tit">{{ spot_lists.title }}</p>
+                                        <p class="address">{{ spot_lists.subtitle }}</p>
+                                        
+                                    </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contents">
+                <div class="content wTy1">
+                    <div class="titAr p-RL2">
+                        <div class="txtAr">
+                            <p class="tit">커뮤니티</p>
+                            <p class="txt">실시간으로 소통하고 질문하세요.</p>
+                        </div>
+                        <button class="viewBtn C-Bu"><a href='{% url "commu_list"%}'>전체보기</a></button>
+                    </div>
+                    <div class="list-content p-RL2">
+                        <div class="tabWp board-tab">
+                            <div class="tab">
+                                <button class="tabBtn active" data-tab="tab-used_article">
+                                    <span class="txt">중고장터</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-with">
+                                    <span class="txt">같이가요</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-get_together">
+                                    <span class="txt">정모/번개</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-lesson">
+                                    <span class="txt">강습정보</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tabConWp">
+                            <div class="tabCon" id="tab-used_article">
+                                <div class="board-list">                                
+                                   {% for notices in notice %}
+                                    <div class="list">
+                                        <p class="tit notice new">
+                                            <span class="txt"><a href="{% url 'commu-detail' notices.id %}">{{ notices.title }}</a></span>
+                                            <span class="count">[{{notices.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ notices.pub_date|date:"Af | y.m.d"}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    {% for usedMarkets in usedMarket|slice:":3" %}
+                                    <div class="list">
+                                        <p class="tit new">
+                                            <span class="txt"><a href="{% url 'commu-detail' usedMarkets.id %}">{{ usedMarkets.title }}</a></span>
+                                            <span class="count">[{{usedMarkets.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ usedMarkets.pub_date|date:"Af | y.m.d"}}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="clearfix">
+                                    <button class="board-viewBtn"><a href='{% url "commu_list"%}'><span class="tx">더보기</span></a></button>
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-with">
+                                <div class="board-list">
+                                   {% for notices in notice %}
+                                    <div class="list">
+                                        <p class="tit notice new">
+                                            <span class="txt"><a href="{% url 'commu-detail' notices.id %}">{{ notices.title }}</a></span>
+                                            <span class="count">[{{notices.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ notices.pub_date|date:"Af | y.m.d"}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    {% for carpools in carpool|slice:":3" %}
+                                    <div class="list">
+                                        <p class="tit new">
+                                            <span class="txt"><a href="{% url 'commu-detail' carpools.id %}">{{ carpools.title }}</a></span>
+                                            <span class="count">[{{carpools.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ carpools.pub_date|date:"Af | y.m.d" }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="clearfix">
+                                    <button class="board-viewBtn"><a href='{% url "commu_list"%}'><span class="tx">더보기</span></a></button>
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-get_together">
+                                <div class="board-list">
+                                   {% for notices in notice %}
+                                    <div class="list">
+                                        <p class="tit notice new">
+                                            <span class="txt"><a href="{% url 'commu-detail' notices.id %}">{{ notices.title }}</a></span>
+                                            <span class="count">[{{notices.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ notices.pub_date|date:"Af | y.m.d"}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    {% for meetings in meeting|slice:":3" %}
+                                    <div class="list">
+                                        <p class="tit new">
+                                            <span class="txt"><a href="{% url 'commu-detail' meetings.id %}">{{ meetings.title }}</a></span>
+                                            <span class="count">[{{meetings.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ meetings.pub_date|date:"Af | y.m.d" }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="clearfix">
+                                    <button class="board-viewBtn"><a href='{% url "commu_list"%}'><span class="tx">더보기</span></a></button>
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-lesson">
+                                <div class="board-list">
+                                   {% for notices in notice %}
+                                    <div class="list">
+                                        <p class="tit notice new">
+                                            <span class="txt"><a href="{% url 'commu-detail' notices.id %}">{{ notices.title }}</a></span>
+                                            <span class="count">[{{notices.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ notices.pub_date|date:"Af | y.m.d"}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    {% for informations in information|slice:":3" %}
+                                    <div class="list">
+                                        <p class="tit new">
+                                            <span class="txt"><a href="{% url 'commu-detail' informations.id %}">{{ informations.title }}</a></span>
+                                            <span class="count">[{{informations.comments.count }}]</span>
+                                        </p>
+                                        <p class="date">{{ informations.pub_date|date:"Af | y.m.d" }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="clearfix">
+                                    <button class="board-viewBtn"><a href='{% url "commu_list"%}'><span class="tx">더보기</span></a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bannerAr banner01 wTy1">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner01.png);"></div>
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner01.png);"></div>
+                        <div class="banner swiper-slide" style="background-image: url(../static/images/@temp/sample_banner01.png);"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wTy1 p-RL2">
+                <h1 class="logo ic"><button class="logoBtn">웨이비 로고</button></h1>
+                <ul class="footer-link">
+                    <!--<li class="link"><button class="link-btn alliance">제휴문의</button></li>-->
+                    <li class="link"><a href='{% url "terms"%}'><button class="link-btn">이용약관</button></a></li>
+                    <li class="link"><a href='{% url "privacy"%}'><button class="link-btn">개인정보 처리방침</button></a></li>
+                </ul>
+                <div class="company-info">
+                    <div class="row">
+                        <span class="txt">샌드 사업자 등록번호 : 166-16-01159</span>
+                        <!--<span class="txt">통신판매업신고번호 : 2020-어쩌구저쩌구-01088</span>-->
+                        <span class="txt">대표 : 박효진</span>
+                    </div>
+                    <div class="row">
+                        <span class="txt">개인정보 관리 책임자 : 전진</span>
+                        <span class="txt">주소: 강원도 강릉시 연곡면 연주로 132, 1205호</span>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p class="txt">샌드는 통신판매중개자로서 거래당사자가 아니며,  호스트가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</p>
+                    <p class="txt">NICEPAY 안전거래 서비스 : 고객님의 안전거래를 위해 현금 결제 시,  저희 사이트에서 가입한 구매안전 서비스를 이용할 수 있습니다. </p>
+                    <button class="nice-pay">NICEPAY 안전거래 가입확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //메인 비주얼 배경이미지 스와이프
+        var mainVisualSwiper = new Swiper('.main-visual-Ar .swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        //메인 비주얼 버튼 스와이프 
+        var mainBtnSwiper = new Swiper('.main-menuAr .swiper-container', {
+            slidesPerView: 'auto',
+        });
+
+        //카드 리스트 스와이프 
+        var listSwiper = new Swiper('.card-list.spot .swiper-container, .card-list.school .swiper-container, .card-list.travel .swiper-container, .card-list.goods .swiper-container, .card-list.channel .swiper-container', {
+            slidesPerView: 'auto',
+            slidesOffsetBefore: 15,
+            slidesOffsetAfter: 15,
+
+            breakpoints: {
+                
+                414: {
+                    slidesOffsetBefore: 0,
+                    slidesOffsetAfter: 0,
+                }
+            }
+        });
+
+        //메인 배너 스와이프
+        var bannerSwiper = new Swiper('.bannerAr.banner01 .swiper-container, .bannerAr.banner02 .swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+
+        $(function(){
+            //모바일 사이즈보다 크면 스와이프 막기 (메인비주얼, 배너 제외)
+            if($(window).width() > 414) {
+
+                $('.mainPage .swiper-container').not('.main-visual-Ar .swiper-container, .bannerAr .swiper-container').addClass('swiper-no-swiping');
+
+            } else {
+                $('.mainPage .swiper-container').removeClass('swiper-no-swiping');
+            }
+                
+            $(window).resize(function() {
+                //모바일 사이즈보다 크면 스와이프 막기 (메인비주얼, 배너 제외)
+                if($('html').width() > 414) {
+
+                    $('.swiper-container').not('.main-visual-Ar .swiper-container, .bannerAr .swiper-container').addClass('swiper-no-swiping');
+
+                } else {
+                    $('.swiper-container').removeClass('swiper-no-swiping');
+                    
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
+
+

@@ -1,0 +1,49 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container subPage">
+            <div class="contents wTy1 p-RL2">
+                <div class="conTit">
+                    <p class="tit">{{ video_detail.title }}</p>
+                    <p class="txt">{{ video_detail.video_desc }}</p>
+                </div>
+                <div class="videoAr">
+                    <div class="video">
+                        <iframe width="100%" height="100%" src="{{ video_detail.video_key }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <img src="{{ video_detail.thumbnail }}"/>
+                </div>
+                <div class="btnAr-list">
+                    <a href="{% url 'channel_list' %}"><button class="go-to-list"><span class="tx">목록으로</span></button></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wTy1 p-RL2">
+                <h1 class="logo ic"><button class="logoBtn">웨이비 로고</button></h1>
+                <ul class="footer-link">
+                    <li class="link"><button class="link-btn alliance">제휴문의</button></li>
+                    <li class="link"><button class="link-btn">이용약관</button></li>
+                    <li class="link"><button class="link-btn">개인정보 처리방침</button></li>
+                </ul>
+                <div class="company-info">
+                    <div class="row">
+                        <span class="txt">웨이비 사업자 등록번호 : 811-12-01310</span>
+                        <span class="txt">통신판매업신고번호 : 2020-어쩌구저쩌구-01088</span>
+                        <span class="txt">대표 : MARCUS JAY KENNEDY</span>
+                    </div>
+                    <div class="row">
+                        <span class="txt">개인정보 관리 책임자 : 정민철</span>
+                        <span class="txt">주소: 강원도 강릉시 주문진읍 매맥이아랫길 24, 비동 910호</span>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p class="txt">웨이비는 통신판매중개자로서 거래당사자가 아니며,  호스트가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</p>
+                    <p class="txt">NICEPAY 안전거래 서비스 : 고객님의 안전거래를 위해 현금 결제 시,  저희 사이트에서 가입한 구매안전 서비스를 이용할 수 있습니다. </p>
+                    <button class="nice-pay">NICEPAY 안전거래 가입확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  {% endblock %}
