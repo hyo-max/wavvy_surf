@@ -1,0 +1,60 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+{% block css %}
+<style>
+  .container h1, h2, h3, h4, h5, h6{
+    font-family: none !important;
+  }
+</style>
+{% endblock %}
+{% block content %}
+
+
+<div class="container subPage">
+            <div class="listPage-titAr wTy1 p-RL1">
+                <div style='padding: 5px 0;border-bottom: 1px solid #EAEAEA;'>
+                <div class="txt">{{ object.category }}</div>
+                <div class="tit">{{ object.title }}</div>
+                <div class="txt">{{ object.author }}</div>
+                <div class="txt">{{ object.pub_date|date:"m/d Af" }}</div>
+                </div><br/>
+                <div>{{ object.body | safe }}</div>
+
+                    {% if object.author == user %}
+                    <div style='margin-top: 30px;'>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'commu_list' %}" style='background-color: #72CCD0;padding: 10px;    float: right;'>목록으로</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'commu-update' object.id %}" style='padding: 5px 7px 5px 7px; border-radius: 10px; right: 15px; color: #fff;'>수정</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'commu-delete' object.id %}" style='padding: 5px 7px 5px 7px; border-radius: 10px; right: 15px; color: #fff;'>삭제</a>
+                    </div>
+                    {% endif %}
+            
+<br/>
+            <div class="form-wrapper" style='padding: 5px 0;border-top: 1px solid #EAEAEA;'>
+          <br/>      
+                <form method="POST" action="/commu/commu_detail/newreply">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{object.id}}" name="blog">
+                    댓글 작성 : <input type="text" name="comment_body" />
+                    <button type="submit" class="btn btn-secondary" style='padding: 5px 7px 5px 7px; border-radius: 10px; right: 15px; color: #fff;'>작성</button>
+                </form>
+            </div> 
+            {% for comment in object.comments.all %}    
+                <div class="comment_list">
+                    <div class="comment"><span class="name"><img class="rounded-circle article-img" src="{{ comment.comment_user.profile.image.url }}">{{comment.comment_user}}</span> {{ comment.comment_body }}</div>
+                    <div class="comment__date">{{ comment.comment_date }} </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="contents">
+                <div class="content wTy1 p-RL1">
+                    <div class="list-content">
+                        
+                        <div class="tabConWp">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+  {% endblock %}

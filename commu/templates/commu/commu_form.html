@@ -1,0 +1,76 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css %}
+<style>
+  #id_category {
+    padding: 0px 10px 0px 17px;
+    margin: 10px 8px;
+    background-color: #fff;
+    border: 1px solid #E5E5E5;
+  }
+  #id_title{
+    padding: 10px;
+  }
+   @media (max-width: 414px){
+      body > div.wrapper > div.listPage-titAr.wTy1.p-RL1 > div > form > input[type=submit]:nth-child(7){
+                background-color: #72CCD0;
+    color: #fff;    width: 50%;
+    float: right;
+    height: 42px;  margin: 20px 0;'
+            }
+        }
+
+@media (min-width: 420px){
+    body > div.wrapper > div.listPage-titAr.wTy1.p-RL1 > div > form > input[type=submit]:nth-child(7){
+      background-color: #72CCD0;
+      color: #fff;
+      width: 272px;
+      margin-left: -150px;
+      /* float: right; */
+      height: 42px;
+      margin: 20px 0;
+      position: absolute;
+      left: 40%;
+    }
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="listPage-titAr wTy1 p-RL1">
+<div class="container subPage">
+    
+
+    <legend>Blog Post!!</legend>
+    <form method="POST" enctype="multipart/form-data" style="margin-bottom: 40px;">
+        {% csrf_token %}
+        {{ form.media }}
+    <label>
+      <div style='margin-bottom: 15px;'>카테고리
+    {{ form.category }}</div>
+    </label>
+    <label>
+    <div style='margin-bottom: 15px;'>제목
+    {{ form.title }}</div>
+    </label>
+    <label>
+    본문<div style='margin-bottom: 15px;overflow: auto;'>
+    {{ form.body }}</div>
+    </label>
+    
+
+    <input type="submit"  value="보내기" name="Submit" />
+</form>
+
+                
+            </div>
+        
+    </div>
+    
+    
+  {% endblock %}

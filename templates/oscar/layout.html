@@ -1,0 +1,289 @@
+{% extends "oscar/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
+
+<style>
+
+
+@media (min-width: 1200px){
+    #default > div > div.page_inner > div{
+        position: relative;
+        width: 1200px;
+        height: inherit;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+/* 쇼핑어드레스 미니헤더  */  
+@media (min-width: 1200px){
+    #default > div > div.navbar.navbar-static-top.navbar-inverse.nav-checkout{
+        position: relative;
+        width: 1200px;
+        height: inherit;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+/* 메인헤더  글씨체 */  
+.gnb-menu{
+            font-family: 'NotoSansKR-M', 'Dotum', '돋움', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        }
+
+.container{
+    padding-top: 0px!important;
+}
+#default > div > div.page_inner{
+        
+}
+#default > div > div.page_inner > div > div{
+    float: right;
+}
+    /*장바구니버튼 테두리 */
+#default > div > div.page_inner > div{
+    padding-top: 100px;
+    
+}
+    /*이너 테두리 */
+#default > div > div.container.page > div{
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+        /*장바구니 방향표 테두리 */    
+#default > div > div.page_inner > div > div > div > button.btn.btn-outline-secondary.dropdown-toggle.dropdown-toggle-split{
+        margin-left: 1px;
+}
+
+ /* 제품이름 간격 */    
+.product_pod {
+    height: 312px;
+    }
+#default > div > div.container.page > difv > div > div > section > div > ol > li > article > h3{
+    margin-top: 5px;
+}
+.product_pod .price_color{
+    color: #35869F;
+}
+article > div.product_price > form > button{
+    background-color: #35869F!important;
+}
+.btn-primary{
+    border-color: #35869F!important;
+}
+#default > div > div.page_inner > div > div > div > button{
+    background-color:#35869F!important;
+}
+.basket-mini-item a.btn {
+    color: #fff;
+    background: #35869F!important;
+    border:#35869F!important;
+}
+.price_color{
+    color:#35869F!important;
+}
+.basket-mini-item a {
+    color: #3b3b3b;
+}
+/* 미니장바구니 버튼간격 */  
+#default > div > div.page_inner > div > div > div > div > ul > li.form-group.form-actions > a.btn.btn-info.btn-sm{
+    padding: 8.5px;
+}
+/* 알람 버튼색 */  
+.btn-info{
+    background-color: #35869F!important;
+    border-color: #35869F!important;
+}
+/* 쇼핑어드레스 입력 계속버튼 */  
+#new_shipping_address > div:nth-child(10) > div > button{
+   background-color: #35869F!important; 
+}
+/* 쇼핑어드레스 미니헤더  */  
+#default > div > div.navbar.navbar-static-top.navbar-inverse.nav-checkout{
+    margin-top: 50px;
+}
+.navbar-inverse {
+    background-color: #f5f5f5!important;
+    border-color: #efefef!important;
+}
+.nav-checkout .active .navbar-text {
+    color: #343434!important;
+}
+
+/* 상품디테일페이지  */  
+#write_review{
+    margin-bottom: 10px;
+    background-color: #35869F!important; 
+    border-color: #35869F;
+}
+#add_to_basket_form{
+    width: auto;
+}
+#add_to_basket_form > button{
+    background: #35869F;
+}
+#content_inner > article > div.row > div.col-sm-6.product_main > div > a{
+    background: #35869F !important;
+}
+#add_to_wishlist_form > button{
+    background: #35869F !important;
+}
+#content_inner > article > div.row > div.col-sm-6.product_main > form > button{
+    background: #35869F;
+}
+#add_review_form > fieldset > button{
+    background: #35869F;
+}
+/* 장바구니  */  
+.total {
+    background-color: #f9f9f9 !important;
+    }
+#basket_formset > div > div > div.col-md-3 > div.checkout-quantity > div > div > button{
+    background-color: #35869F!important; 
+}
+
+#voucher_form_link > a, #content_inner > div.form-group.clearfix > div > div > a{
+    background-color: #35869F!important; 
+}
+#content_inner > div.form-group.clearfix{
+    float: right;
+}
+#content_inner > div.form-group.clearfix > div > div{
+    width: 107.333333%;
+}
+#basket_totals > table > tbody > tr:nth-child(9) > td > h3{
+    margin-left: -53px;
+}
+table > tbody > tr > th,.table > tbody > tr > td{
+    padding-right: 0px!important;
+}
+.basket-items .price_color{
+    margin-left: -100px;
+}
+
+/* 체크아웃  */ 
+#new_shipping_address > div:nth-child(4) > div > button,
+#new_shipping_address > div:nth-child(5) > div > button{
+    font-family: 'NotoSansKR-M';
+    color: #fff;
+    line-height: 1;
+    background-color: #35869F;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+
+/* 마이페이지  */ 
+.btn-primary{
+    background-color: #35869F!important; 
+}
+.btn-danger {
+    background-color: #bb3d3a!important;
+    border-color: #bb3d3a!important;
+}
+.btn-default{
+    background-color: #35869F!important; 
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+background-color: #35869F!important; 
+
+}
+
+
+#default > div > div.container.page > div > div > aside > ul > li{
+    float: none!important; 
+}
+#default > div > div.container.page > div > div > aside > ul > li > a.active{
+    background-color: #35869F!important;
+    color: #fff;
+}
+
+@media (max-width: 414px){
+.container{
+        padding-top: 40px!important;
+}
+    /*장바구니버튼 좌우*/
+#default > div > div.page_inner > div > div{
+    float: inherit;
+    margin-right: 15px;
+}
+    /*장바구니버튼 레이아웃*/
+#default > div > div.page_inner > div{
+    padding-top: 60px;
+    margin-bottom: -50px;
+    margin-right: -45px;
+}
+ /*장바구니 안에 목록 레이아웃*/
+#default > div > div.page_inner > div > div > div > div.dropdown-menu.dropdown-menu-right{
+    width: 336px;
+}
+/* 쇼핑어드레스 미니헤더  */  
+#default > div > div.navbar.navbar-static-top.navbar-inverse.nav-checkout{
+    margin-top: 0px;
+}
+}
+</style>
+{% endblock %}
+{% block layout %}
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+    
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    {% include "allpage/header.html" %}
+   
+        <div class="page_inner">
+            <div class="row justify-content-between ">
+                
+                {# Mini-basket wrapped in a block so some templates can now display it #}
+                {% block mini_basket %}{% include "oscar/partials/mini_basket.html" %}{% endblock %}
+            </div>
+        </div>
+        
+    
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+        <div class="container page">
+            <div class="page_inner">
+                {% block breadcrumbs %}{% endblock %}
+                {% block header %}
+                    <div class="page-header">
+                        <h1>{% block headertext %}{% endblock %}</h1>
+                    </div>
+                {% endblock %}
+                {% include "oscar/partials/alert_messages.html" %}
+                {% block subnavigation %}{% endblock %}
+                <div class="content">
+                    {% block subheader %}{% endblock subheader %}
+
+                    {# Div exists for AJAX updates to entire content section #}
+                    <div id="content_inner">{% block content %}{% endblock %}</div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% include "oscar/partials/footer.html" %}
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+    {{ block.super }}
+    <!-- Twitter Bootstrap -->
+    <script src="{% static "oscar/js/bootstrap3/bootstrap.min.js" %}"></script>
+    <!-- Oscar -->
+    <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "oscar/partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}

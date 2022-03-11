@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+    {% endblock %}
+    {% block css %}
+    {% endblock %}
+   {% block styles %}
+    <style>
+    .footer .company-info{
+        margin-left: 15px;
+    }
+    @media (max-width: 414px){
+            body > div > div.header > div > div.gnbWpper.open > div > div.gnb-link > a:nth-child(1) > button{
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    {% endblock %} 
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="headerAr wTy1">
+                <h1 class="h-btn logo ic"><a href='{% url "index"%}'><button class="logoBtn"></button></a></h1>
+                <button class="h-btn side-menuBtn ic">메뉴 버튼</button>
+                <div class="gnbWpper">
+                    <div class="gnbWp">
+                        <div class="gnb-h">
+                            <button class="close ic">닫기</button>
+                            <h2 class="logo ic"></h2>
+                        </div>
+                        <div class="gnb-menu">
+                            <div class="menuList">
+                                <a href='{% url "spot_list"%}'><button class="menuBtn spot">서핑스팟</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "school_list"%}'><button class="menuBtn school">서핑스쿨</button></a>
+                            </div>
+                            <!--<div class="menuList">
+                                <button class="menuBtn travel"><a href='{% url "school_list"%}'>서핑여행</button></a>
+                            </div>-->
+                            <div class="menuList">
+                                <a href='/shop'><button class="menuBtn goods">서핑용품</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "commu_list"%}'><button class="menuBtn community">커뮤니티</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "channel_list"%}'><button class="menuBtn channel">채널 웨이비</button></a>
+                            </div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <div class="gnb-link">
+                            <a href="/shop/accounts/profile/"><button class="btn line" >마이페이지</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_logout' %}"><button class="btn">로그아웃</button></a>
+                        </div>
+                        {% else %}
+                        <div class="gnb-link">
+                            <a href="{% url 'account_login' %}"><button class="btn line" >로그인</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_signup' %}"><button class="btn">회원가입</button></a>
+                        </div>
+                        {% endif %}
+
+    
+                    </div>
+                </div>
+                <div class="dim side-menu"></div>
+            </div>
+        </div>
+

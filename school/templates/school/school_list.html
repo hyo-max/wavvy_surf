@@ -1,0 +1,181 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="container subPage">
+            <div class="listPage-titAr wTy1 p-RL1">
+                <p class="tit">서핑스쿨</p>
+                <p class="txt">전국의 서핑스쿨 정보를 제공합니다. </p>
+            </div>
+            <div class="contents">
+                <div class="content wTy1 p-RL1">
+                    <div class="list-content card-list-Ar">
+                        <div class="tabWp cont-tab">
+                            <div class="tab">
+                                <button class="tabBtn active" data-tab="tab-all">
+                                    <span class="txt">전체</span>
+                                    <span class="count">{{school_list|length}}</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-east_sea">
+                                    <span class="txt">동해안</span>
+                                    <span class="count">{{east|length}}</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-south_sea">
+                                    <span class="txt">남해안</span>
+                                    <span class="count">{{south|length}}</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-west_sea">
+                                    <span class="txt">서해안</span>
+                                    <span class="count">{{west|length}}</span>
+                                </button>
+                            </div>
+                            <div class="tab">
+                                <button class="tabBtn" data-tab="tab-jeju">
+                                    <span class="txt">제주</span>
+                                    <span class="count">{{jeju|length}}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tabConWp">
+                            <div class="tabCon" id="tab-all">
+                                <div class="card-list school">
+                                    {% for school_lists in school_list %}
+                                    <div class="list">
+
+                                    <a href="{% url 'school-detail' school_lists.pk %}">
+                                        <div class="thumbAr">
+						                    <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ school_lists.img  }});"></div>
+                                        </div>
+                                        
+                                        <div class="infoAr">
+                                            <p class="tit">{{ school_lists.title }}</p>
+                                            <p class="address">{{ school_lists.subtitle }}</p>
+                                            <!--<p class="average-point">
+                                                <em class="star-ic"></em>
+                                                <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                            </p>-->
+                                        </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!--<div class="pagiNation-Wp">
+                                    <div class="arrAr">
+                                        <button class="arr first">처음으로</button>
+                                        <button class="arr prve">이전으로</button>
+                                    </div>
+                                    <ul class="pageAr">
+                                        <li class="pageNum active"><span class="num">1</span></li>
+                                        <li class="pageNum"><span class="num">2</span></li>
+                                        <li class="pageNum"><span class="num">3</span></li>
+                                    </ul>
+                                    <div class="arrAr">
+                                        <button class="arr next">다음으로</button>
+                                        <button class="arr last">마지막으로</button>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div class="tabCon" id="tab-east_sea">
+                                <div class="card-list school">
+                                    {% for easts in east %}
+                                    <div class="list">
+                                    <a href="{% url 'school-detail' easts.pk %}">
+                                        <div class="thumbAr">
+                                            <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ easts.img  }});"></div>
+                                        </div>
+                                        
+                                        <div class="infoAr">
+                                            <p class="tit">{{ easts.title }}</p>
+                                            <p class="address">{{ easts.subtitle }}</p>
+                                            <!--<p class="average-point">
+                                                <em class="star-ic"></em>
+                                                <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                            </p>-->
+                                        </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-south_sea">
+                                <div class="card-list school">
+                                    {% for souths in south %}
+                                    <div class="list">
+                                    <a href="{% url 'school-detail' souths.pk %}">
+                                        <div class="thumbAr">
+                                            <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ souths.img  }});"></div>
+                                        </div>
+                                        
+                                        <div class="infoAr">
+                                            <p class="tit">{{ souths.title }}</p>
+                                            <p class="address">{{ souths.subtitle }}</p>
+                                            <!--<p class="average-point">
+                                                <em class="star-ic"></em>
+                                                <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                            </p>-->
+                                        </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-west_sea">
+                                <div class="card-list school">
+                                    {% for wests in west %}
+                                    <div class="list">
+                                    <a href="{% url 'school-detail' wests.pk %}">
+                                        <div class="thumbAr">
+                                            <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ wests.img  }});"></div>
+                                        </div>
+                                        
+                                        <div class="infoAr">
+                                            <p class="tit">{{ wests.title }}</p>
+                                            <p class="address">{{ wests.subtitle }}</p>
+                                            <!--<p class="average-point">
+                                                <em class="star-ic"></em>
+                                                <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                            </p>-->
+                                        </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tabCon" id="tab-jeju">
+                                <div class="card-list school">
+                                    {% for jejus in jeju %}
+                                    <div class="list">
+                                    <a href="{% url 'school-detail' jejus.pk %}">
+                                        <div class="thumbAr">
+                                            <div class="thumbImg" style="background-image: url(https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ jejus.img  }});"></div>
+                                        </div>
+                                        
+                                        <div class="infoAr">
+                                            <p class="tit">{{ jejus.title }}</p>
+                                            <p class="address">{{ jejus.subtitle }}</p>
+                                            <!--<p class="average-point">
+                                                <em class="star-ic"></em>
+                                                <span class="tx en">4.8<span class="in-tx">/</span>500</span>
+                                            </p>-->
+                                        </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  {% endblock %}

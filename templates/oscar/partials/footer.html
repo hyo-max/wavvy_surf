@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load static %}
+{% block styles %}
+    <link rel="shortcut icon" href="{% static 'images/main_visual.png' %}" type="image/png" />
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mo-style.css' %}">
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+{% endblock %}
+<footer class="footer container">
+    {% block footer %}
+    {% include "allpage/footer.html" %}
+        {% comment %}
+            Could be used for displaying links to privacy policy, terms of service, etc.
+            We have a CSS class defined:
+                <ul class="footer_links inline">
+                    ...
+                </ul>
+         {% endcomment %}
+    {% endblock %}
+</footer>

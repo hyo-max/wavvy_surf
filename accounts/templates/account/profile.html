@@ -1,0 +1,70 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% block css %}
+<style>
+#id_username,#id_email, #id_password{
+    width: 100%;
+    height: 3.438rem;
+}
+#submit{
+    background-color: #35869F;
+    color: #fff;
+    display: block;
+    width: 100%;
+    height: 42px;
+    margin: 10px 0px;
+    border-color: #fff;
+    border-width: 1px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <div class="contents">
+                <div class="form-wp account">
+                    <div class="character-logo">웨이비 로고</div>
+                    
+                    
+                    <div class="input-wp">
+                        <div class="titAr">
+
+                            <div class="from-tx-btn fR">
+                                <span class="txt"></span>
+                            </div>
+                        </div>
+                        <div class="tit" style="padding-bottom: 9px; border-bottom: 1px solid #eeeeee;">회원정보 수정</div>             
+                        <form method="POST" action="" enctype='multipart/form-data'>
+                            <legend>profile info</legend>
+                            </br>
+                            {{ u_form.img.label }}
+                            </br>
+                            {% if user.img  %}
+                            <img class="round" src="https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ user.img }}" width="200" style='display: block; border-radius: 90px;'> <br>
+                            {% else %}
+                            <img class="round" src="{% static 'images/default_profile.gif' %}" width="200" style='display: block; border-radius: 90px;'> <br>
+                            {% endif %}
+                            
+                             {{ u_form.img }}
+
+                            {{ form_class|crispy }}<p class="txt" style="padding: 10px 0px 20px;"></p>
+
+                            <div class="txt">이메일&nbsp;</div><p class="txt" style="padding: 10px 0px 20px;">{{ user.email}}</p>
+                            {% csrf_token %}
+                            {{ u_form.username.label }}
+                            {{ u_form.username }}
+
+                            
+
+                            <input type="submit" name="Submit" id='submit'  />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

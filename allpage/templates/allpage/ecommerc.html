@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웨이비</title>
+    <link rel="shortcut icon" href="{% static 'images/main_visual.png' %}" type="image/png" />
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mo-style.css' %}">
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PE0NHH26TZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PE0NHH26TZ');
+    </script>
+    
+    {% block css %}
+    
+{% endblock %}
+       {% block styles %}
+<style>
+  .footer .company-info{
+      margin-left: 15px;
+  }
+</style>
+{% endblock %} 
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="headerAr wTy1">
+                <h1 class="h-btn logo ic"><a href='{% url "index"%}'><button class="logoBtn"></button></a></h1>
+                <button class="h-btn side-menuBtn ic">메뉴 버튼</button>
+                <div class="gnbWpper">
+                    <div class="gnbWp">
+                        <div class="gnb-h">
+                            <button class="close ic">닫기</button>
+                            <h2 class="logo ic">웨이비 로고</h2>
+                        </div>
+                        <div class="gnb-menu">
+                            <div class="menuList">
+                                <button class="menuBtn spot"><a href='{% url "spot_list"%}'>서핑스팟</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn school"><a href='{% url "school_list"%}'>서핑스쿨</a></button>
+                            </div>
+                            <!--<div class="menuList">
+                                <button class="menuBtn travel">서핑여행</button>
+                            </div>-->
+                            <div class="menuList">
+                                <button class="menuBtn goods"><a href='/shop'>서핑용품</button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn community"><a href='{% url "commu_list"%}'>커뮤니티</a></button>
+                            </div>
+                            <div class="menuList">
+                                <button class="menuBtn channel"><a href='{% url "channel_list"%}'>채널 웨이비</a></button>
+                            </div>
+                        </div>
+ 
+                        {% if request.user.is_authenticated %}
+                        <div class="gnb-link">
+                            <button class="btn line"><a href="/shop/accounts/profile/">마이페이지</a></button>
+                            <span class="bar"></span>
+                            <button class="btn"><a href="{% url 'account_logout' %}">로그아웃</a></button>
+                        </div>
+                        {% else %}
+                        <div class="gnb-link">
+                            <button class="btn line"><a href="{% url 'account_login' %}">로그인</a></button>
+                            <span class="bar"></span>
+                            <button class="btn"><a href="{% url 'account_signup' %}">회원가입</a></button>
+                        </div>
+                        {% endif %}
+       {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+                    </div>
+                </div>
+                <div class="dim side-menu"></div>
+            </div>
+        </div>
+{% block content %}
+{% endblock %}
+        <div class="footer">
+            <div class="wTy1 p-RL2">
+                <h1 class="logo ic"><button class="logoBtn">웨이비 로고</button></h1>
+                <ul class="footer-link">
+                    <li class="link"><button class="link-btn alliance">제휴문의</button></li>
+                    <li class="link"><button class="link-btn">이용약관</button></li>
+                    <li class="link"><button class="link-btn">개인정보 처리방침</button></li>
+                </ul>
+                <div class="company-info">
+                    <div class="row">
+                        <span class="txt">웨이비 사업자 등록번호 : 811-12-01310</span>
+                        <span class="txt">대표 : MARCUS JAY KENNEDY</span>
+                    </div>
+                    <div class="row">
+                        <span class="txt">개인정보 관리 책임자 : 송민철</span>
+                        <span class="txt">주소: 강원도 강릉시 주문진읍 매맥이아랫길 24, 비동 910호</span>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p class="txt">웨이비는 통신판매중개자로서 거래당사자가 아니며,  호스트가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</p>
+                    <p class="txt">NICEPAY 안전거래 서비스 : 고객님의 안전거래를 위해 현금 결제 시,  저희 사이트에서 가입한 구매안전 서비스를 이용할 수 있습니다. </p>
+                    <button class="nice-pay">NICEPAY 안전거래 가입확인</button>
+                </div>
+            </div>
+        </div>
+    {% block scripts %}
+  {% endblock %}
+</body>
+</html>

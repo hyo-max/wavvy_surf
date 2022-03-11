@@ -1,0 +1,42 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container subPage">
+            <div class="listPage-titAr wTy1 p-RL1">
+                  <p class="tit">문의 &nbsp;</p>
+            </div>
+            <div class="contents">
+                <div class="content wTy1 p-RL1">
+                    <div class="list-content card-list-Ar">
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-actions">
+      <button type="submit" style='background-color: #69C4C8;
+    display: block;
+    width: 50%;
+    height: 3.125rem;
+    margin-bottom: 0.625rem;
+    font-size: 0.938rem;
+    position: relative;
+    color: #fff;
+    margin-top: 40px;'>보내기</button>
+    </div>
+</form>
+
+
+</div>
+</div>
+</div>
+    </div>
+
+    
+{% endblock %}

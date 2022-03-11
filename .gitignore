@@ -1,6 +1,12 @@
 *.pyc
 *~
 __pycache__
+venv_new_wavvy
 db.sqlite3
 .DS_Store
 my_settings.py
+Makefile
+
+.config/
+fixtures/
+iamport/

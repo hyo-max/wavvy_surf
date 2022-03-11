@@ -1,0 +1,10 @@
+{% extends "oscar/checkout/payment_details.html" %}
+{% block payment_details %}
+    {% block payment_details_content %}
+        <form action="{% url 'iamport:inicis_payment' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="신용카드 결제">
+        </form>
+    {% endblock payment_details_content %}
+{% endblock payment_details %}

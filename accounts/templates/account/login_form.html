@@ -1,0 +1,65 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block css %}
+{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <div class="contents">
+                <div class="form-wp account">
+                    <div class="character-logo">웨이비 로고</div>
+                    <div class="input-wp">
+                        <div class="titAr">
+                            <p class="tit">웨이비 로그인</p>
+                            <div class="from-tx-btn fR">
+                                <span class="txt">회원이 아니신가요?</span>
+                                <button class="tx-btn"><a href='{% url "create" %}'>회원가입</a></button>
+                            </div>
+                        </div>
+                        <div class="input-form">
+                            <form action="." method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="form-group {% if field.errors|length > 0 %}has-error{%endif %}">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        <div class="inpBox">
+                                        <input name="{{ field.html_name }}" id="{{ field.id_for_lable }}" class="inp" type="{{ field.field.widget.input_type }}" value="{{ field.value|default_if_none:'' }}">
+                                        {% for error in field.errors %}
+                                            <label class="control-label" for="{{ field.id_for_label }}">{{ error }}</label>
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="input-btn-box">
+                                    <span class="checks">
+                                        <input type="checkbox" id="login" name="login">
+                                        <label for="login">로그인 유지하기</label>
+                                    </span>
+                                    <div class="user-info fR">
+                                        <button class="account-find"><a href='{% url "reset_password" %}'>비밀번호 찾기</a></button>
+                                    </div>
+                                </div>  
+                        </div>
+                    </div>
+                    <div class="btnAr">
+                        <button class="btn wavvy" type="submit">
+                            <span class="tx">로그인</span>
+                        </button>
+                            </form>
+                        <button class="btn kakao">
+                            <a href="{% provider_login_url 'kakao' method='oauth2' %}"><span class="tx">카카오계정으로 시작하기</span></a>
+                        </button>
+                        <button class="btn naver">
+                            <a href="{% provider_login_url 'naver' %}"><span class="tx">네이버계정으로 시작하기</span></a>
+                        </button>
+                        <button class="btn google">
+                            <a href="{% provider_login_url 'google' %}"><span class="tx">구글계정으로 시작하기</span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

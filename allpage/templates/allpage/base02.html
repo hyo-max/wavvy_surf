@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웨이비</title>
+    <link rel="shortcut icon" href="{% static 'images/main_visual.png' %}" type="image/png" />
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mo-style.css' %}">
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PE0NHH26TZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PE0NHH26TZ');
+    </script>
+    {% block css %}
+    <style>
+        @media (max-width: 414px){
+            body > div > div.header > div > div.gnbWpper.open > div > div.gnb-link > a:nth-child(1) > button{
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+    <script>
+       window.Promise ||
+         document.write(
+           '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+         )
+       window.Promise ||
+         document.write(
+           '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+         )
+       window.Promise ||
+         document.write(
+           '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+         )
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="headerAr wTy1">
+                <h1 class="h-btn logo ic"><a href='{% url "index"%}'><button class="logoBtn">웨이비 로고</button></a></h1>
+                <button class="h-btn side-menuBtn ic">메뉴 버튼</button>
+                <div class="gnbWpper">
+                    <div class="gnbWp">
+                        <div class="gnb-h">
+                            <button class="close ic">닫기</button>
+                            <h2 class="logo ic">웨이비 로고</h2>
+                        </div>
+                        <div class="gnb-menu">
+                            <div class="menuList">
+                                <a href='{% url "spot_list"%}'><button class="menuBtn spot">서핑스팟</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "school_list"%}'><button class="menuBtn school">서핑스쿨</button></a>
+                            </div>
+                            <!--<div class="menuList">
+                                <button class="menuBtn travel"><a href='{% url "school_list"%}'>서핑여행</button></a>
+                            </div>-->
+                            <div class="menuList">
+                                <a href='/shop'><button class="menuBtn goods">서핑용품</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "commu_list"%}'><button class="menuBtn community">커뮤니티</button></a>
+                            </div>
+                            <div class="menuList">
+                                <a href='{% url "channel_list"%}'><button class="menuBtn channel">채널 웨이비</button></a>
+                            </div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <div class="gnb-link">
+                            <a href="/shop/accounts/profile/"><button class="btn line" >마이페이지</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_logout' %}"><button class="btn" >로그아웃</button></a>
+                        </div>
+                        {% else %}
+                        <div class="gnb-link">
+                            <a href="{% url 'account_login' %}"><button class="btn line">로그인</button></a>
+                            <span class="bar"></span>
+                            <a href="{% url 'account_signup' %}"><button class="btn">회원가입</button></a>
+                        </div>
+                        {% endif %}
+       {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+                    </div>
+                </div>
+                <div class="dim side-menu"></div>
+            </div>
+        </div>
+{% block content %}
+{% endblock %}
+        <div class="footer">
+            <div class="wTy1 p-RL2">
+                <h1 class="logo ic"><button class="logoBtn">웨이비 로고</button></h1>
+                <ul class="footer-link">
+                    <li class="link"><a href='{% url "contact" %}'><button class="link-btn alliance">제휴문의</button></a></li>
+                    <li class="link"><a href='{% url "terms"%}'><button class="link-btn">이용약관</button></a></li>
+                    <li class="link"><a href='{% url "privacy"%}'><button class="link-btn">개인정보 처리방침</button></a></li>
+                </ul>
+                <div class="company-info">
+                    <div class="row">
+                        <span class="txt">웨이비 사업자 등록번호 : 811-12-01310</span>
+                        <span class="txt">대표 : MARCUS JAY KENNEDY</span>
+                    </div>
+                    <div class="row">
+                        <span class="txt">개인정보 관리 책임자 : 송민철</span>
+                        <span class="txt">주소: 강원도 강릉시 주문진읍 매맥이아랫길 24, 비동 910호</span>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p class="txt">웨이비는 통신판매중개자로서 거래당사자가 아니며,  호스트가 등록한 상품정보 및 거래에 대해 책임을 지지 않습니다.</p>
+                    <p class="txt">NICEPAY 안전거래 서비스 : 고객님의 안전거래를 위해 현금 결제 시,  저희 사이트에서 가입한 구매안전 서비스를 이용할 수 있습니다. </p>
+                    <button class="nice-pay">NICEPAY 안전거래 가입확인</button>
+                </div>
+            </div>
+        </div>
+    {% block scripts %}
+  {% endblock %}
+</body>
+</html>

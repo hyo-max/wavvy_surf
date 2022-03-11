@@ -1,0 +1,24 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container subPage">
+            <div class="contents wTy1 p-RL2">
+                <div class="conTit">
+                    <p class="tit">{{ video_detail.title }}</p>
+                    <p class="txt">{{ video_detail.video_desc }}</p>
+                </div>
+                <div class="videoAr">
+                    <div class="video">
+                        <iframe width="100%" height="100%" src="{{ video_detail.video_key }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <img src="{{ video_detail.thumbnail }}"/>
+                </div>
+                <div class="btnAr-list">
+                    <a href="{% url 'channel_list' %}"><button class="go-to-list"><span class="tx">목록으로</span></button></a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+  {% endblock %}

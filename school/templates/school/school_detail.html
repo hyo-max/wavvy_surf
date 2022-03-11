@@ -1,0 +1,168 @@
+{% extends 'allpage/base02.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat:{{ object.lat }}, lng:  {{object.lng}}};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 14, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+
+
+</script>
+    
+<div class="container subPage bgGy">
+            <div class="contents blockWp wTy1 p-RL2">
+                <div class="blockAr">
+                    <div class="block w-50">
+                        <div class="block-con imgAr">
+                            <div class="whCon">
+				    <div class="img" style="background-image: url( https://new-wavvy-buket.s3.ap-northeast-2.amazonaws.com/{{ object.img }});"></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="block w-50">
+                        <div class="block-con introduce">
+                            <div class="whCon">
+                                <p class="tit school">{{ object.title }}</p>
+                                <p class="address">{{ object.subtitle }}</p>
+                                <p class="description" style="overflow: auto;overflow-x: hidden;">{{ object.desc }}</p>
+                            </div>
+                        </div>
+                        <div class="block-con infoCon">
+                            <div class="whCon">
+                                <div class="tabWp board-tab">
+                                    <div class="tab">
+                                        <button class="tabBtn active" data-tab="tab-info">
+                                            <span class="txt">안내</span>
+                                        </button>
+                                    </div>
+                                    <div class="tab">
+                                        <button class="tabBtn" data-tab="tab-map">
+                                            <span class="txt">지도</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="tabConWp">
+                                    <div class="tabCon" id="tab-info">
+                                        <div class="infoAr">
+                                            <ul class="txt-info">
+                                                <li class="info-list lodation">{{ object.address }}</li>
+                                                <li class="info-list tel">{{ object.phone_number }}</li>
+                                                <a href="{{ object.link }}" target="_blank"><li class="info-list homePage">{{ object.link }}</li></a>
+                                            </ul>
+                                            <ul class="option">
+                                                {% if object.parking %}
+                                                <li class="opt-list parking">
+                                                    <span class="tx">주차</span>
+                                                </li>
+                                                {% else %}
+                                                {% endif %}
+                                                {% if object.reservation %}
+                                                <li class="opt-list booking">
+                                                    <span class="tx">예약</span>
+                                                </li>
+                                                {% else %}
+                                                {% endif %}
+                                                {% if object.wifi %}
+                                                <li class="opt-list wi-fi">
+                                                    <span class="tx">와이파이</span>
+                                                </li>
+                                                {% else %}
+                                                {% endif %}
+                                                {% if object.shower %}
+                                                <li class="opt-list shower">
+                                                    <span class="tx">샤워</span>
+                                                </li>
+                                                {% else %}
+                                                {% endif %}
+                                                {% if object.amenities %}
+                                                <li class="opt-list amenity">
+                                                    <span class="tx">어메니티</span>
+                                                </li>
+                                                {% else %}
+                                                {% endif %}
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="tabCon mapCon" id="tab-map">
+                                        <div class="infoAr">
+                                            <div class="mapAr">
+                                                <div id='map' class="mapImg" style="background-image: url(../images/@temp/sample_map01.png);"></div>
+                                                <p class="address">{{ object.address }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="contents blockWp wTy1 p-RL2">
+                <div class="blockAr">
+                    <div class="block w-50">
+                        <div class="block-con programAr">
+                            <div class="whCon program">
+                                <div class="thumbAr">
+                                    <div class="thumbImg" style="background-image: url(../images/@temp/sample_thumb14.png);"></div>
+                                </div>
+                                <div class="infoAr">
+                                    <p class="tit">신나는 서핑체험 1:1강습</p>
+                                    <p class="program-info">
+                                        <span class="tx">1:1(15만원), 1:2(12만원)</span>
+                                        <span class="tx">보드, 슈트 포함</span>
+                                        <span class="tx">자유서핑 포함</span>
+                                    </p>
+                                    <p class="descrip">1시간 라인업+강습, 1시간 촬영 및 리뷰로 이루어집니다.<br>2시간 강습 진행 협의 가능.</p>
+                                    <div class="price-info">
+                                        <div class="selling-price"><span class="en">50,000</span>원</div>
+                                        <button class="bookingBtn fR">예약하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block w-50">
+                        <div class="block-con programAr">
+                            <div class="whCon program">
+                                <div class="thumbAr">
+                                    <div class="thumbImg" style="background-image: url(../images/@temp/sample_thumb14.png);"></div>
+                                </div>
+                                <div class="infoAr">
+                                    <p class="tit">신나는 서핑체험 1:1강습</p>
+                                    <p class="program-info">
+                                        <span class="tx">1:1(15만원), 1:2(12만원)</span>
+                                        <span class="tx">보드, 슈트 포함</span>
+                                        <span class="tx">자유서핑 포함</span>
+                                    </p>
+                                    <p class="descrip">1시간 라인업+강습, 1시간 촬영 및 리뷰로 이루어집니다.<br>2시간 강습 진행 협의 가능.</p>
+                                    <div class="price-info">
+                                        <div class="selling-price"><span class="en">50,000</span>원</div>
+                                        <button class="bookingBtn fR">예약하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{maps}}&callback=initMap"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+{% endblock %}
