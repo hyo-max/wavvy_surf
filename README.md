@@ -29,7 +29,7 @@
 - Front
     - Javascript, HTML, CSS, jquery
 - Back
-    - Python, Django, Spring Data JPA, Gradle, Junit4, Postgresql, AWS(EC2, RDS, S3)
+    - Python, Django, Postgresql, AWS(EC2, RDS, S3)
 
 ## 개발 기간
 
