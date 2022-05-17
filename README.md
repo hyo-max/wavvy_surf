@@ -30,6 +30,3 @@
 - Back
     - Python, Django, Postgresql, AWS(EC2, RDS, S3)
 
-## 개발 기간
-
-- 2020-12-01 ~ 2021-02-17 (2개월 17일)
