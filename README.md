@@ -3,7 +3,7 @@
 </h1>
 ‼ Wavvy는 서핑을 즐기는 사람들을 위한 플랫폼으로 날씨와 파도정보를 제공하고 주변 인프라, 편의시설과 서핑에 관한 정보들을 제공합니다
 
-## 사이트 : http://wavvy.surf
+## [Wavvy](http://wavvy.surf)
 <div align="center">
 <img width="20%" src="https://user-images.githubusercontent.com/52864734/157870495-95bde00f-bff1-4cbc-b4ce-ce2ca068d6dd.png" />
 </div>
