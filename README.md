@@ -23,6 +23,9 @@
 - **지도** : 구글 지도 API 사용 (서핑 스쿨 > 지도 페이지)
 - **배포** : AWS EC2로 배포하고 media파일 s3에 저장 연동, RDS postgresql 연동
 
+## 헥사곤 날씨
+<!-- <Mobile> <img width="30%" src="https://user-images.githubusercontent.com/52864734/169681339-6342aed9-a83a-4aca-8867-6915de81319f.png" /> -->
+
 ## 기술 스택
 
 - Front
